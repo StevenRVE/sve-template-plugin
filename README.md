@@ -12,4 +12,7 @@ cd sve-template-plugin
 
 git submodule add -b develop --name dpf git@github.com:DISTRHO/DPF.git dpf
 git submodule update --init --recursive
+
+cd dpf
+git pull
 ```
