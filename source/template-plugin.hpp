@@ -22,7 +22,7 @@ class TemplatePlugin : public Plugin
 {
 public:
     enum Parameters {
-        PARAM_GAIN
+        PARAM_GAIN,
         PARAM_COUNT
     };
 
@@ -130,6 +130,7 @@ private:
         Set our plugin class as non-copyable and add a leak detector just in case.
     */
     DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TemplatePlugin)
+    float gain;
 };
 
 END_NAMESPACE_DISTRHO

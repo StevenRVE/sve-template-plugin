@@ -53,7 +53,7 @@ void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
             setParamProps(parameter, { .min=-0.0f, .max=2.0f, .def=1.0f, .name="Gain", .symbol="gain" });
             break;
         default:
-            return 0;
+            break;
     }
 }
 
