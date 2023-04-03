@@ -28,9 +28,9 @@ help()
         echo "options:"
         echo "c      clear cached files in mod workdir"
         echo "b      build plugin using mod plugin builder"
-        echo "i      install plugin from workdir to moddwarf"
+        echo "i      install plugin from workdir to MOD Dwarf"
         echo "a      run build and install function"
-	echo "l      build and run local"
+	      echo "l      build and run local"
 }
 
 ############################################################
@@ -40,16 +40,16 @@ help()
 clear()
 {
     # remove cached build/tmp files
-    rm -r ~/mod-workdir/moddwarf/build/host-sve-sequencer-dpf-labs-custom/
-    rm -r ~/mod-workdir/moddwarf/build/sve-sequencer-dpf-labs-*
-    rm -r ~/mod-workdir/moddwarf/host/tmp-sve-sequencer-dpf-labs
-    rm -r ~/mod-workdir/moddwarf/plugins/SVE-Sequencer.lv2
-    rm -r ~/mod-workdir/moddwarf/target/lib/lv2/SVE-Sequencer.lv2
-    rm -r ~/mod-plugin-builder/plugins/package/sve-sequencer-dpf-labs
+    rm -r ~/mod-workdir/moddwarf/build/host-sve-template-plugin-custom/
+    rm -r ~/mod-workdir/moddwarf/build/sve-template-plugin-*
+    rm -r ~/mod-workdir/moddwarf/host/tmp-sve-template-plugin
+    rm -r ~/mod-workdir/moddwarf/plugins/sve-template-plugin.lv2
+    rm -r ~/mod-workdir/moddwarf/target/lib/lv2/sve-template-plugin.lv2
+    rm -r ~/mod-plugin-builder/plugins/package/sve-template-plugin/*
 
     make clean
 
-    echo "${GREEN}cached files succesfully cleared${NC}"
+    echo "${GREEN}cached files successfully cleared${NC}"
 }
 
 ############################################################
@@ -61,26 +61,28 @@ build()
     clear
 
     # copy plugin dir in mod-plugin-builder plugins directory
-    cp -r ~/Development/sve-plugins/sve-sequencer-dpf-labs/ ~/mod-plugin-builder/plugins/package/
+    cp -r /home/mpd-docker-mount/plugins/sve-plugins/sve-template-plugin/dpf ~/mod-plugin-builder/plugins/package/sve-template-plugin
+    cp -r /home/mpd-docker-mount/plugins/sve-plugins/sve-template-plugin/source ~/mod-plugin-builder/plugins/package/sve-template-plugin
+    cp -r /home/mpd-docker-mount/plugins/sve-plugins/sve-template-plugin/sve-template-plugin.mk ~/mod-plugin-builder/plugins/package/sve-template-plugin
 
     # build plugin
-    cd ~/mod-plugin-builder/
-    ./build moddwarf sve-sequencer-dpf-labs/
-    cd -
+    cd ~/mod-plugin-builder/ || exit
+    ./build moddwarf sve-template-plugin
+    cd - || exit
 
     # copy .ttl files to mod workdir
     make
-    cp -r ~/Development/sve-plugins/sve-sequencer-dpf-labs/source/build/SVE-Sequencer.lv2/*.ttl ~/mod-workdir/moddwarf/plugins/SVE-Sequencer.lv2/
+    cp -r /home/mpd-docker-mount/plugins/sve-plugins/sve-template-plugin/source/build/sve-template-plugin.lv2/*.ttl ~/mod-workdir/moddwarf/plugins/sve-template-plugin.lv2/
 
     echo "${GREEN}build function is completed!${NC}"
 
     # remove the old plugin version
-    rm -r ~/.lv2/SVE-Sequencer.lv2
+    rm -r ~/.lv2/sve-template-plugin.lv2
 
     echo "${GREEN}removed old lv2 plugin${NC}"
 
     # copy complete lv2 plugin to .lv2 directory
-    cp -r ~/mod-workdir/moddwarf/plugins/SVE-Sequencer.lv2 ~/.lv2
+    cp -r ~/mod-workdir/moddwarf/plugins/sve-template-plugin.lv2 ~/.lv2
 
     echo "${GREEN}copied new lv2 plugin${NC}"
 }
@@ -91,10 +93,10 @@ build()
 
 install()
 {
-    # install plugin on moddwarf
-    cd ~/mod-workdir/moddwarf/plugins
-    tar cz SVE-Sequencer.lv2 | base64 | curl -F 'package=@-' http://192.168.51.1/sdk/install
-    cd -
+    # install plugin on MOD Dwarf
+    cd ~/mod-workdir/moddwarf/plugins || exit
+    tar cz sve-template-plugin.lv2 | base64 | curl -F 'package=@-' http://192.168.51.1/sdk/install
+    cd - || exit
 
     echo "${GREEN}install function is completed!${NC}"
 }
@@ -116,9 +118,9 @@ all()
 
 localLV2()
 {
-    rm -rf ~/.lv2/SVE-Sequencer.LV2 || true
+    rm -rf ~/.lv2/sve-template-plugin.LV2 || true
     make
-    cp -r build/SVE-Sequencer.lv2/ ~/.lv2
+    cp -r build/sve-template-plugin.lv2/ ~/.lv2
     make clean
     gnome-terminal -- qjackctl& -s
     echo "${GREEN}Qjackctl is running!${NC}"
