@@ -1,5 +1,5 @@
-#ifndef _H_TEMPLATE_PLUGIN_
-#define _H_TEMPLATE_PLUGIN_
+#ifndef _H_{{ define_name }}_
+#define _H_{{ define_name }}_
 
 // framework
 #include "DistrhoPlugin.hpp"
@@ -18,7 +18,7 @@ START_NAMESPACE_DISTRHO
 /**
   Your plugin class that subclases the base DPF Plugin one.
 */
-class TemplatePlugin : public Plugin
+class {{ class_name }} : public Plugin
 {
 public:
     enum Parameters {
@@ -30,7 +30,7 @@ public:
       Plugin class constructor.
       You must set all parameter values to their defaults, matching the value in initParameter().
     */
-    TemplatePlugin();
+    {{ class_name }}();
 
 protected:
     // -------------------------------------------------------------------
@@ -129,10 +129,10 @@ private:
     /**
         Set our plugin class as non-copyable and add a leak detector just in case.
     */
-    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TemplatePlugin)
+    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR({{ class_name }})
     float gain;
 };
 
 END_NAMESPACE_DISTRHO
 
-#endif // _H_TEMPLATE_PLUGIN_
+#endif // _H_{{ define_name }}_

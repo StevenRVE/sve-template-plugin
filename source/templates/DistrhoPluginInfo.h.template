@@ -18,8 +18,8 @@
 #define DISTRHO_PLUGIN_INFO_H_INCLUDED
 
 #define DISTRHO_PLUGIN_BRAND "SvE-plugins"
-#define DISTRHO_PLUGIN_NAME "sve-test"
-#define DISTRHO_PLUGIN_URI  "https://test.com"
+#define DISTRHO_PLUGIN_NAME "{{ project_name }}"
+#define DISTRHO_PLUGIN_URI  "{{ plugin_uri }}"
 
 #define DISTRHO_PLUGIN_IS_RT_SAFE       1
 #define DISTRHO_PLUGIN_NUM_INPUTS       1

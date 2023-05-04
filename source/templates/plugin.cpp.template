@@ -1,4 +1,4 @@
-#include "template-plugin.hpp"
+#include "{{ file_name }}.hpp"
 
 START_NAMESPACE_DISTRHO
 
@@ -6,7 +6,7 @@ START_NAMESPACE_DISTRHO
       Plugin class constructor.
       You must set all parameter values to their defaults, matching the value in initParameter().
     */
-TemplatePlugin::TemplatePlugin()
+{{ class_name }}::{{ class_name }}()
     : Plugin(PARAM_COUNT, 0, 0) // parameters, programs, states
 {
     /**
@@ -24,7 +24,7 @@ TemplatePlugin::TemplatePlugin()
   Initialize the parameter @a index.
   This function will be called once, shortly after the plugin is created.
 */
-void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
+void {{ class_name }}::initParameter(uint32_t index, Parameter& parameter)
 {
     if (index >= PARAM_COUNT) { return; }
 
@@ -81,7 +81,7 @@ void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
   Get the current value of a parameter.
   The host may call this function from any context, including realtime processing.
 */
-float TemplatePlugin::getParameterValue(uint32_t index) const
+float {{ class_name }}::getParameterValue(uint32_t index) const
 {
     switch (index)
     {
@@ -99,7 +99,7 @@ float TemplatePlugin::getParameterValue(uint32_t index) const
   When a parameter is marked as automable, you must ensure no non-realtime
   operations are performed.
 */
-void TemplatePlugin::setParameterValue(uint32_t index, float value)
+void {{ class_name }}::setParameterValue(uint32_t index, float value)
 {
     switch (index)
     {
@@ -119,12 +119,12 @@ void TemplatePlugin::setParameterValue(uint32_t index, float value)
 // -------------------------------------------------------------------
 // Process
 
-void TemplatePlugin::activate()
+void {{ class_name }}::activate()
 {
     // plugin is activated
 }
 
-void TemplatePlugin::deactivate()
+void {{ class_name }}::deactivate()
 {
     // plugin is deactivated
 }
@@ -132,7 +132,7 @@ void TemplatePlugin::deactivate()
 /**
   Run/process function for plugins with MIDI input.
 */
-void TemplatePlugin::run(const float**, float**, uint32_t nframes)
+void {{ class_name }}::run(const float**, float**, uint32_t nframes)
 {
     // run
 }
@@ -144,7 +144,7 @@ void TemplatePlugin::run(const float**, float**, uint32_t nframes)
     Optional callback to inform the plugin about a sample rate change.
     This function will only be called when the plugin is deactivated.
 */
-void TemplatePlugin::sampleRateChanged(double newSampleRate)
+void {{ class_name }}::sampleRateChanged(double newSampleRate)
 {
     (void)newSampleRate;
 }
@@ -153,7 +153,7 @@ void TemplatePlugin::sampleRateChanged(double newSampleRate)
 
 Plugin* createPlugin()
 {
-    return new TemplatePlugin();
+    return new {{ class_name }}();
 }
 
 // -----------------------------------------------------------------------
