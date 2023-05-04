@@ -30,20 +30,36 @@ void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
 
     struct ParamProps
     {
+        bool automatable, boolean, integer, logarithmic, output, trigger;
         float min, max, def;
         const char* name;
         const char* symbol;
-
     };
+
 
     const auto setParamProps = [](auto& param, ParamProps props)
     {
-        param.hints = kParameterIsAutomatable | kParameterIsInteger;
+        if(props.automatable){ param.hints = kParameterIsAutomatable;}
+        if(props.boolean){param.hints = kParameterIsBoolean;}
+        if(props.integer){param.hints = kParameterIsInteger;}
+        if(props.logarithmic){param.hints = kParameterIsLogarithmic;}
+        if(props.output){param.hints = kParameterIsOutput;}
+        if(props.trigger){param.hints = kParameterIsTrigger | kParameterIsBoolean;}
         param.ranges.min = props.min;
         param.ranges.max = props.max;
         param.ranges.def = props.def;
         param.name = props.name;
         param.symbol = props.symbol;
+    };
+
+    const auto createList = []
+    {
+        ParameterEnumerationValue* const list = new ParameterEnumerationValue[2];
+        list[0].label = "Item 0";
+        list[0].value = 0;
+        list[1].label = "Item 1";
+        list[1].value = 1;
+        return list;
     };
 
     switch (index)
