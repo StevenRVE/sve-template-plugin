@@ -18,8 +18,8 @@
 #define DISTRHO_PLUGIN_INFO_H_INCLUDED
 
 #define DISTRHO_PLUGIN_BRAND "SvE-plugins"
-#define DISTRHO_PLUGIN_NAME "sve-test"
-#define DISTRHO_PLUGIN_URI  "https://test.com"
+#define DISTRHO_PLUGIN_NAME "sve-templatePlugin"
+#define DISTRHO_PLUGIN_URI  "https://github.com/StevenRVE/sve-template-plugin.git"
 
 #define DISTRHO_PLUGIN_IS_RT_SAFE       1
 #define DISTRHO_PLUGIN_NUM_INPUTS       1

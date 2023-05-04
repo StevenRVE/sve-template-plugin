@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.7)
 
  add_subdirectory(dpf)
 
- dpf_add_plugin({{ file_name }}
+ dpf_add_plugin({{ project_name }}
    TARGETS clap lv2 vst2 vst3
 
    FILES_DSP
