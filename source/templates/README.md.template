@@ -18,3 +18,13 @@ git pull
 ```
 
 If something is wrong with adding dpf, remove the submodule following the steps described here: https://gist.github.com/myusuf3/7f645819ded92bda6677#:~:text=To%20remove%20a,upvote%20this%20answer
+
+##Generate new template plugin
+
+```
+cd source
+
+python generateNewPlugin.py
+```
+
+Enter name and URI in terminal
