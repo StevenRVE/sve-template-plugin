@@ -1,5 +1,5 @@
-#ifndef _H__
-#define _H__
+#ifndef _H_TEMPLATEPLUGIN_
+#define _H_TEMPLATEPLUGIN_
 
 // framework
 #include "DistrhoPlugin.hpp"
@@ -18,7 +18,7 @@ START_NAMESPACE_DISTRHO
 /**
   Your plugin class that subclases the base DPF Plugin one.
 */
-class  : public Plugin
+class TemplatePlugin : public Plugin
 {
 public:
     enum Parameters {
@@ -30,7 +30,7 @@ public:
       Plugin class constructor.
       You must set all parameter values to their defaults, matching the value in initParameter().
     */
-    ();
+    TemplatePlugin();
 
 protected:
     // -------------------------------------------------------------------
@@ -40,13 +40,13 @@ protected:
       Get the plugin label.
       This label is a short restricted name consisting of only _, a-z, A-Z and 0-9 characters.
     */
-    const char* getLabel() const noexcept override { return "Template Plugin"; }
+    const char* getLabel() const noexcept override { return "templatePlugin"; }
 
     /**
       Get an extensive comment/description about the plugin.
       Optional, returns nothing by default.
     */
-    const char* getDescription() const override { return "SvE template plugin."; }
+    const char* getDescription() const override { return "sve-templatePlugin"; }
 
     /**
       Get the plugin author/maker.
@@ -105,9 +105,9 @@ protected:
     // -------------------------------------------------------------------
     // Process
 
-    void activate();
+    void activate() override;
 
-    void deactivate();
+    void deactivate() override;
 
     /**
       Run/process function for plugins with MIDI input.
@@ -129,10 +129,10 @@ private:
     /**
         Set our plugin class as non-copyable and add a leak detector just in case.
     */
-    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR()
+    DISTRHO_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TemplatePlugin)
     float gain;
 };
 
 END_NAMESPACE_DISTRHO
 
-#endif // _H__
+#endif // _H_TEMPLATEPLUGIN_

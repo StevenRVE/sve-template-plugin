@@ -27,7 +27,7 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
 
 # render plugin.cpp
 template = env.get_template('plugin.cpp.template')
-plugin_cpp = template.render(class_name=class_name, file_name=file_name, define_name=define_name, plugin_uri=plugin_uri)
+plugin_cpp = template.render(class_name=class_name, file_name=file_name)
 
 # write plugin.cpp to file
 filename = f'{file_name}.cpp'
@@ -36,7 +36,10 @@ with open(os.path.join(OUTPUT_SOURCE, filename), 'w') as f:
 
 # render plugin.hpp
 template = env.get_template('plugin.hpp.template')
-plugin_hpp = template.render(plugin_name=plugin_name, plugin_uri=plugin_uri)
+plugin_hpp = template.render(class_name=class_name,
+                             define_name=define_name,
+                             plugin_name=plugin_name,
+                             project_name=project_name)
 
 # write plugin.hpp to file
 filename = f'{file_name}.hpp'

@@ -40,13 +40,13 @@ protected:
       Get the plugin label.
       This label is a short restricted name consisting of only _, a-z, A-Z and 0-9 characters.
     */
-    const char* getLabel() const noexcept override { return "Template Plugin"; }
+    const char* getLabel() const noexcept override { return "{{ plugin_name }}"; }
 
     /**
       Get an extensive comment/description about the plugin.
       Optional, returns nothing by default.
     */
-    const char* getDescription() const override { return "SvE template plugin."; }
+    const char* getDescription() const override { return "{{ project_name }}"; }
 
     /**
       Get the plugin author/maker.
@@ -105,9 +105,9 @@ protected:
     // -------------------------------------------------------------------
     // Process
 
-    void activate();
+    void activate() override;
 
-    void deactivate();
+    void deactivate() override;
 
     /**
       Run/process function for plugins with MIDI input.
