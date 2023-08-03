@@ -16,7 +16,7 @@
 START_NAMESPACE_DISTRHO
 
 /**
-  Your plugin class that subclases the base DPF Plugin one.
+  Your plugin class that subclasses the base DPF Plugin one.
 */
 class TemplatePlugin : public Plugin
 {

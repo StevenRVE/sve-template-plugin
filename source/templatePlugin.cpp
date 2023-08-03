@@ -39,12 +39,12 @@ void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
 
     const auto setParamProps = [](auto& param, ParamProps props)
     {
-        if(props.automatable){ param.hints = kParameterIsAutomatable;}
-        if(props.boolean){param.hints = kParameterIsBoolean;}
-        if(props.integer){param.hints = kParameterIsInteger;}
-        if(props.logarithmic){param.hints = kParameterIsLogarithmic;}
-        if(props.output){param.hints = kParameterIsOutput;}
-        if(props.trigger){param.hints = kParameterIsTrigger | kParameterIsBoolean;}
+        if(props.automatable){ param.hints |= kParameterIsAutomatable;}
+        if(props.boolean){param.hints |= kParameterIsBoolean;}
+        if(props.integer){param.hints |= kParameterIsInteger;}
+        if(props.logarithmic){param.hints |= kParameterIsLogarithmic;}
+        if(props.output){param.hints |= kParameterIsOutput;}
+        if(props.trigger){param.hints |= kParameterIsTrigger | kParameterIsBoolean;}
         param.ranges.min = props.min;
         param.ranges.max = props.max;
         param.ranges.def = props.def;
@@ -64,9 +64,9 @@ void TemplatePlugin::initParameter(uint32_t index, Parameter& parameter)
 
     switch (index)
     {
-        // MASTER PARAMS
+        // PARAMS
         case PARAM_GAIN:
-            setParamProps(parameter, { .min=-0.0f, .max=2.0f, .def=1.0f, .name="Gain", .symbol="gain" });
+            setParamProps(parameter, { .min=0.0f, .max=2.0f, .def=1.0f, .name="Gain", .symbol="gain" });
             break;
         default:
             break;
@@ -85,7 +85,7 @@ float TemplatePlugin::getParameterValue(uint32_t index) const
 {
     switch (index)
     {
-        // MASTER PARAMS
+        // PARAMS
         case PARAM_GAIN:
             return gain;
         default:
@@ -103,7 +103,7 @@ void TemplatePlugin::setParameterValue(uint32_t index, float value)
 {
     switch (index)
     {
-    // MASTER PARAMS
+    // PARAMS
     case PARAM_GAIN:
         gain = value;
         break;
