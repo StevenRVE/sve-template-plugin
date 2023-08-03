@@ -10,16 +10,16 @@ Add DPF as git submodule
 ```
 cd sve-templatePlugin
 
-git submodule add -b develop --name dpf git@github.com:DISTRHO/DPF.git dpf
-git submodule update --init --recursive
+git submodule init
+git submodule update --recursive
 
 cd dpf
-git pull
+git pull origin develop
 ```
 
 If something is wrong with adding dpf, remove the submodule following the steps described here: https://gist.github.com/myusuf3/7f645819ded92bda6677#:~:text=To%20remove%20a,upvote%20this%20answer
 
-##Generate new template plugin
+## Generate new plugin from template
 
 ```
 cd source
